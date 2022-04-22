@@ -1,0 +1,44 @@
+.advantage {
+  display: flex;
+  flex-wrap: wrap;
+  &__item {
+    width: calc(33.333% - 16px);
+    max-width: calc(33.333% - 16px);
+    position: relative;
+    padding-left: 102px;
+    @media screen and (max-width: 1000px) {
+      padding-left: 94px;
+    }
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      max-width: 100%;
+      min-height: 78px;
+    }
+    &:not(:last-child) {
+      margin-right: 24px;
+      @media screen and (max-width: 768px) {
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+    }
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    p {
+      line-height: 130%;
+      color: #79787A;
+    }
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 130%;
+    margin-bottom: 8px;
+    color: #100D23;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 6px;
+    }
+  }
+}

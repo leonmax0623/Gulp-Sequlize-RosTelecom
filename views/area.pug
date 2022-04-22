@@ -1,0 +1,60 @@
+extends layout/layout
+
+include components/tabs/mixins
+include components/services_stack/mixins
+include components/popular_services/mixins
+include components/main/mixins
+include components/page/mixins
+
+block main
+	script.
+		const area = !{JSON.stringify(city)}
+		const region = !{JSON.stringify(region)}
+		const tabIndex = "#{tabIndex}"
+	.w-full.bg-white.mt-1
+		if banners && banners.length > 0
+			.max-w-screen-xl.mx-auto.banners
+				if false
+					.swiper-wrapper
+					.swiper-slide
+				+banners(banners)
+		.max-w-screen-xl.mx-auto
+			.px-8.py-16.box-content.relative( class="lg:px-6" )
+				h2.text-2xl.font-semibold.mb-6 Отправьте заявку на подключение в #{area.name}
+				.-mx-6.mb-6
+					+tabs({ items: tabs })
+				.tab-loader( data-load="loaded" )
+				+panels({ items: tariffs[tab] })
+		
+		//- .relative
+			.bg-custom-gray-3.absolute.h-full.top-0.left-0.w-full.z-0
+			.max-w-screen-xl.mx-auto.relative
+				.px-8.py-16( class="lg:px-6" )
+					h2.text-2xl.font-semibold.mb-8 Комплекс услуг от Ростелеком в #{area.name}
+					+services_stack()
+		//- .max-w-screen-xl.mx-auto
+			.flex.flex-col.w-full.px-8.py-16( class="lg:px-6" )
+				h2.font-semibold.text-2xl.mb-6 Популярные услуги
+				+popular_services({ items: popular_services })
+		.form.hero
+			.max-w-screen-xl.mx-auto
+				if false
+					.thanks
+						p Спасибо за заявку, в ближайшее время в свами свяжутся!
+				else
+					.w-full.h-full.px-8.py-12( class="lg:px-6" )
+						h2.text-2xl.font-semibold.mb-4 Остались вопросы?
+						p.mb-8 Отправьте заявку, и наш специалист свяжется с вами в ближайшее время, чтобы ответить на них!
+						+lead_form()
+		if area.content
+			.max-w-screen-xl.mx-auto
+				.content.w-full.h-full.px-8.py-12( class="lg:px-6" )
+					|!{area.content}
+
+block modal
+	.modal.form-modal( class={ "is-active": false } )
+		.modal-background( onclick='toggleModal()' )
+		.modal-content
+			.modal-close( onclick='toggleModal()' )
+				i.fas.fa-times
+			+modal_form()

@@ -1,0 +1,64 @@
+block variables
+
+include ../components/header/mixins
+header.w-full.h-full
+	.hidden.h-9( class="lg:flex lg:bg-custom-blue" )
+		.flex.w-full.mx-auto.max-w-screen-xl.px-6.justify-between
+			+nav_list({ items: header.mainMenuRoutes, className: 'text-white items-center text-sm', chevron: false, direction: null })
+			if area
+				+city({ city: area.name, className: '' })
+	.hero.border-b
+		.main-section.bg-custom-blue.w-full.px-8.py-5.flex.items-center.z-50.max-w-screen-xl.mx-auto( class="lg:bg-transparent lg:px-6 sm:py-4" )
+			.flex.items-center.justify-between.w-full
+				if (dark)
+					+logo({ type: 'dark', className: "hidden lg:block h-14" })
+				else
+					+logo({ type: 'light', className: "hidden sm:block lg:block h-14" })
+				+dropdown_list({ items: header.mainMenuRoutes, className: 'lg:hidden' })
+				.hidden.nav-end( class="lg:flex" )
+					if (dark)
+						+contacts({ type: 'dark' })
+					else  
+						+contacts({ type: '' })
+					+support({ className: '' })
+				.flex.justify-between( class="lg:hidden" )
+					if false
+						.hidden.mr-16.ml-6( class="sm:flex" )
+					+burger_trigger()
+	.flex.justify-between.items-center.p-4( class="sm:hidden" )
+		+logo({ type: 'dark', className: "w-48" })
+		+contacts({ type: 'small' })
+	if header.navMenuRoutes.length > 0
+		.shadow.w-full
+			if area
+				+nav_list({ 
+					items: header.navMenuRoutes,
+					className: 'hidden h-11 lg:flex items-center justify-between text-base max-w-screen-xl mx-auto px-6', 
+					chevron: false, 
+					direction: null 
+				})
+	#mobile-menu.hidden.justify-between.w-full.h-full.fixed.z-40( class="lg:hidden" )
+		.menu-opened-bg.flex.h-full.w-full.bg-black.bg-opacity-70.cursor-pointer( onclick='toggleMenu()' )
+		.nav.absolute.h-full.w-full.justify-self-end.bg-white.flex-shrink-0( class="sm:w-80" )
+			if area
+				.p-5
+					+city({ city: area.name, className: "justify-end text-black" })
+			.p-5.hidden.text-right( class="sm:block" )
+				+contacts({ type: '' })
+				+support({ className: 'mt-4 lg:hidden' })
+			if area
+				.border-t.border-b.border-solid.p-5.pb-0
+					+nav_list({ 
+						items: header.navMenuRoutes, 
+						direction: 'column',
+						className: 'justify-between text-sm w-full lg:px-36 bg-white text-base', 
+						chevron: true
+					})
+			if area
+				.p-5
+					+nav_list({ 
+						items: header.mainMenuRoutes.slice(-2), 
+						direction: 'column',
+						className: 'justify-between text-sm w-full lg:px-36 bg-white text-base', 
+						chevron: true 
+					})

@@ -1,0 +1,12 @@
+section.s-channel.section-32
+  .container-main
+    .channel
+      h2.mb-56 300 ТВ-каналов на любой вкуc, включая HD и 4K
+      .channel__scroll
+        .channel__inner
+          - let url = 'img/tv/';
+          - let alt = '300 ТВ-каналов';
+          each val, key in Array(12)
+            - let count = key+1
+            a(href="#").channel__item
+              img(src=url + count + '.jpg', alt=alt)

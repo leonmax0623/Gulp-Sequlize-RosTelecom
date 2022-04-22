@@ -1,0 +1,80 @@
+mixin tabs({ items })
+	.h-12.relative.tabs
+		button.arrow.prev( onclick='setTabSlide("Prev")' )
+			span.icon.is-small
+				i.fas.fa-angle-left
+		button.arrow.next( onclick='setTabSlide("Next")' )
+			span.icon.is-small
+				i.fas.fa-angle-right
+		.flex.h-full.min-w-max.panels-tabs.bg-custom-gray-1.border.rounded-full
+			.flex.main-carousel
+				.swiper-wrapper
+					each item, i in items
+						.tab.cursor-pointer.relative.w-max.swiper-slide(
+							class=(tab == item.name ? ` ${tab == "Акции" ? "bg-custom-brand-2" : "bg-custom-red-2"} rounded-full text-white` : "")
+							style=`width: ${item.width}px;`
+							onclick=`setTab("${item.name.replace(/[+]/g, '%2B')}", "${i}")`
+							name=item.name.replace(/[+]/g, '%2B') )
+							p.px-7( class="py-2.5" ) #{item.name}
+	
+mixin panel(item)
+	.panel.swiper-slide.flex.flex-col.rounded-2xl.border.border-solid.min-w-20.max-w-20.relative.mx-2
+		.head.py-6.w-full.px-5.rounded-t-2xl( style="background: " + item.background )
+			.content
+				h3.font-bold.text-xl.text-left( style="color: " + item.fontColor ) #{item.name}
+				if item.secondString
+					p.font-bold.text-xl.text-left.second_name #{item.secondString}
+			.mt-5
+				each service in item.services.main
+					-let { icon, isDark, background, title, subtitle } = service
+					.flex.mb-1.items-start.service
+						.flex.min-w-2-5.w-10.h-10.justify-center.items-center
+							.icon-wrapper( style=background ? "background: " + background + ";" : "" )
+								img.w-auto( src=`${env.NODE_ENV == "development" ? icon : icon.replace("http:", "https:")}` alt=title style=`${isDark ? "filter: invert(1);" : ""}` )
+						.ml-4.text-left.service-content
+							p.font-medium( style="color: " + item.fontColor ) #{title}
+							p.text-custom-gray-2.text-xs.leading-4.subtitle( style="color: " + item.fontColor ) !{subtitle}
+
+		.bottom.relative.h-full.rounded-b-2xl( style="background: " + item.bottomBackground )
+			if item.flag.content
+				.flag( 
+					style="background: " + item.flag.background + "; color: " + item.flag.text + ";" ) #{item.flag.content}
+			.py-6.w-full.px-5.h-full.flex.flex-col.justify-between
+				div
+					each service in item.services.common
+						-let { icon, isDark, background, title, subtitle } = service
+						.flex.mb-1.items-start.service
+							.flex.min-w-2-5.w-10.h-10.justify-center.items-center
+								.icon-wrapper( style=background ? "background: " + background + ";" : "" )
+									img.w-auto( src=`${env.NODE_ENV == "development" ? icon : icon.replace("http:", "https:")}` alt=title style=`${isDark ? "filter: invert(1);" : ""}` )
+							.ml-4.text-left.service-content
+								p.font-medium( style="color: " + item.bottomFontColor ) #{title}
+								p.text-custom-gray-2.text-xs.leading-4.subtitle( style="color: " + item.bottomFontColor ) !{subtitle}
+				.wrapper.pt-4
+					.flex.w-full.justify-end.items-center
+						span.font-medium.text-5xl.text-right( style=`color: ${item.bottomFontColor};` ) #{item.price.value}
+						.price( class="ml-1.5" style=`color: ${item.bottomFontColor};` )
+							p.text-sm #{item.price.units[0]}
+							hr( style=`background: ${item.bottomFontColor};` )
+							p.text-sm #{item.price.units[1]}
+					button.button.rounded-md.h-10.w-full.text-base.font-medium.mt-6(
+						style=`background: ${item.button.background}!important; color: ${item.button.text}!important;`
+						onclick!=`setOrder(${JSON.stringify(item).replace(/"/g, "'")})`) #{item.button.content}
+
+		
+mixin panels({ items })
+	.panels.rounded-bl-md.rounded-br-md.-mx-3.pb-4
+		.btn.right( onclick='setPanelSlide("Next")' )
+			i.fas.fa-angle-right
+		.btn.left( onclick='setPanelSlide("Prev")' )
+			i.fas.fa-angle-left
+		.main-carousel.overflow-hidden
+			.swiper-wrapper
+				each item in items
+					+panel(item)
+			//- .finger-hint
+				img( src="/img/slider_finger.svg" )
+			.btn.right( onclick='setPanelSlide("Next")' )
+				i.fas.fa-angle-right
+			.btn.left( onclick='setPanelSlide("Prev")' )
+				i.fas.fa-angle-left

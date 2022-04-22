@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+
+  client:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: "npm run dev"
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+      - 3002:3002
+    volumes:
+      - ./:/app
+      - /app/node_modules
+
+networks:
+  default:
+    name: rostelecom-network-local
+    external: true

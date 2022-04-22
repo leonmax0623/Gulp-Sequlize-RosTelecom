@@ -1,0 +1,11 @@
+if areas.length > 0
+	#live_result
+		ul
+			each area, i in areas
+				li
+					a( href=`${area.link}` )
+						p #{area.name}
+						p
+							span #{area.region}&nbsp;
+							if area.district
+								span #{area.district}

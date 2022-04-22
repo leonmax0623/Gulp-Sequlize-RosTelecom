@@ -1,0 +1,71 @@
+mixin tariff_choice()
+	-let checkboxes = [ { name: "home-internet", title: "Домашний интернет" }, { name: "television", title: "Телевидение" }, { name: "mobile", title: "Мобильная связь" }, { name: "cctv", title: "Видеонаблюдение" } ]
+	-let inputs = [ { title: "Скорость интернета", checkbox: 'speed', names: [ 'speed_min', 'speed_max' ], placeholder: [ '1 Мбит/с', '1000 Мбит/с' ], classList: "flex flex-col sm:flex-row items-start sm:items-center mb-3 justify-between" }, { title: "Стоимость тарифа", checkbox: 'price', names: [ 'price_min', 'price_max' ], placeholder: [ '1 руб.', '1000 руб.' ], classList: "flex flex-col sm:flex-row items-start mt-5 sm:mt-0 sm:items-center justify-between flex-shrink-0" }, ]
+
+	form.bg-white.py-8.px-10.rounded-xl.flex.flex-col.borderborder-solid.border-custom-gray-7.tariff-choice( class="sm:min-w-max" )
+		h2.text-2xl.font-semibold.mb-8 Подбери свой идеальный тариф
+		.flex.flex-wrap.mb-8( class="w-7/12" )
+			each checkbox in checkboxes
+				-let { name, title } = checkbox
+				label.custom-checkbox.flex.pr-3.pb-3.w-full.box-border.items-center( class="sm:w-1/2" )
+					input( type="checkbox" name=name )
+					span.checkbox
+					span.text-sm.ml-2.text-custom-gray-4 #{title}
+		each input in inputs
+			-let { title, checkbox, names, placeholder, classList } = input
+			div( class=classList )
+				label.custom-checkbox
+					input( type="checkbox" name=checkbox )
+					span.checkbox
+					span.ml-2 #{title}
+				.flex.flex-col.flex-wrap( class="sm:flex-row sm:flex-nowrap sm:mr-32" )
+					.my-5( class="sm:my-0" )
+						span( class="sm:ml-5" ) от
+						input.bg-custom-gray-5.border.border-solid.border-custom-black-0.rounded-xl.w-32.h-10.mx-3.px-6.text-xs(
+							class="py-2.5"
+							type="text"
+							name=names[0]
+							placeholder=placeholder[0])
+					div
+						span до
+						input.bg-custom-gray-5.border.border-solid.border-custom-black-0.rounded-xl.w-32.h-10.mx-3.px-6.text-xs(
+							class="py-2.5"
+							type="text"
+							name=names[1]
+							placeholder=placeholder[1])
+		button.bg-custom-red-2.text-white.rounded-md.w-48.h-10.mt-8 Подобрать тариф
+
+mixin card({ classList, title, subtitle, color, icon, path })
+	.card.flex.flex-col.justify-between.rounded-xl.bg-white.overflow-hidden.border.border-solid( 
+		class=classList 
+		style="border-color: " + color + ";")
+		.mt-6.mx-8.mb-5
+			h2.text-base.font-semibold( class="sm:text-2xl" ) #{title}
+			span.text-custom-gray-2 #{subtitle}
+		a.w-full.h-16.flex.justify-between.items-center.px-8(
+			style="background: "+color+";"
+			href=path)
+			+svg(icon, "w-8")
+			span.icon
+				i.fas.fa-angle-right.text-3xl.text-white
+
+mixin services_stack()
+	.flex.flex-col( class="lg:flex-row" )
+		+tariff_choice()
+		.flex.flex-col.flex-shrink-0.mt-8( class="md:flex-row lg:flex-col lg:w-auto lg:mt-0 md:ml-0 lg:ml-6" )
+			+card({
+				classList: "h-48 w-full sm:w-2/3 md:w-full",
+				title: "Специальные предложения", 
+				subtitle: "Акционные пакеты", 
+				color: "#F2994A", 
+				icon: "percentage-icon", 
+				path: "/special-offers"
+			})
+			+card({
+				classList: "h-48 w-full sm:w-2/3 md:w-full sm:ml-0 md:ml-6 lg:ml-0 mt-4 md:mt-0 lg:mt-4",
+				title: "Проверить скорость интернета", 
+				subtitle: "Speedtest", 
+				color: "#7800FF", 
+				icon: "rocket-icon", 
+				path: "/speedtest"
+			})

@@ -1,0 +1,121 @@
+mixin area_selector({ areas, onlyCities, regionKey })
+	if onlyCities
+		each cities, letter in areas
+			.msnry-item.mb-4
+				p.mb-2.text-xl.font-semibold #{letter}
+				ul
+					each city, i in cities
+						li
+							a( href=`/${regionKey}/${city.key}/` ) #{city.shortSecondName} #{city.shortName}
+	else
+		each regiones, letter in areas
+			.msnry-item.mb-4
+				p.mb-2.text-xl.font-semibold #{letter}
+				ul
+					each region, i in regiones
+						if false
+							li.active
+						li.cursor-pointer.region( kladr_id=region.kladrId i=i+"-"+letter class="region-"+i+"-"+letter )
+							p
+								span.icon.mr-2
+									i.fas.fa-angle-right
+								span #{region.shortName} #{region.shortSecondName}
+
+mixin area_livesearch()
+	.livesearch
+		form#live_form
+			.field
+				.control
+					input#livesearch( type="text" placeholder="Введите название города" autocomplete="off" )
+
+mixin modal_form()
+	form.columns.lead-form
+		if false
+			.thanks
+				img
+				h3
+				p
+				div
+		.column.is-12
+			.column-container
+				.content
+					h2 Заявка на подключение
+		.column.is-9
+			.column-container
+				.content
+					p Оставьте заявку на сайте, и мы свяжемся с Вами в ближайшее время для уточнения информации
+				.modal-form
+					.field.hidden
+						input( name="tariffId" )
+					.field.phone
+						input( name="phone" placeholder="Контактный телефон" )
+						p.help Номер введён неверно
+					.field.name
+						input( name="name" placeholder="ФИО" class={ "empty": false, "invalid": false } )
+					.field.city
+						input( name="city" placeholder="Город" )
+					.field.street
+						input( name="street" placeholder="Улица" )
+					.field.house
+						input( name="houseNumber" placeholder="Дом" )
+					.field.flat
+						input( name="flat" placeholder="Квартира" )
+				p 
+					|Нажимая кнопку «Отправить заявку», Вы принимаете&nbsp; 
+					a.privacy-policy-trigger( href="/privacy-policy" ) политику конфиденциальности
+					|&nbsp;и даёте согласие на обработку Ваших персональных данных
+		.column.is-3
+			.column-container
+				.content
+					p В заказе:
+					p.tariff_name Название тарифа
+					p.price 
+						span 1999
+						span &nbsp;руб.
+				.button-container
+					button.hidden.rounded-xl.bg-custom-red-2.col-span-4.text-white.text-sm.h-12( class={ "sm:block lg:col-span-3 xl:col-span-4": true, "is-loading": false } ) Отправить заявку
+		
+
+
+mixin lead_form()
+	form.grid.grid-cols-12.w-full.gap-4.auto-rows-auto.lead-form
+		-
+			let inputs = [ 
+				{ className: 'px-2 py-4 xl:px-4 border border-brand-1 rounded-xl box-border text-sm h-12 col-span-12  sm:col-span-4 md:col-span-4 xl:col-span-4', placeholder: 'Контактный телефон', name: 'phone' },
+				{ className: 'px-2 py-4 xl:px-4 border border-brand-1 rounded-xl box-border text-sm h-12 col-span-12 sm:col-span-8', placeholder: 'ФИО', name: 'name' }, 
+				{ className: 'px-2 py-4 xl:px-4 border border-brand-1 rounded-xl box-border text-sm h-12 col-span-12 sm:col-span-4', placeholder: 'Город', name: 'city' }, 
+				{ className: 'px-2 py-4 xl:px-4 border border-brand-1 rounded-xl box-border text-sm h-12 col-span-12  sm:col-span-4 lg:col-span-4 xl:col-span-4', placeholder: 'Улица', name: 'street' }, 
+				{ className: 'px-2 py-4 xl:px-4 border border-brand-1 rounded-xl box-border text-sm h-12 col-span-6  sm:col-span-2 lg:col-span-2', placeholder: 'Дом', name: 'houseNumber' }, 
+				{ className: 'px-2 py-4 xl:px-4 border border-brand-1 rounded-xl box-border text-sm h-12 col-span-6 sm:col-span-2 lg:col-span-2', placeholder: 'Квартира', name: 'flat' } 
+			]
+		each input in inputs
+			-let { className, placeholder, name, disabled } = input
+			input( type="text" placeholder=placeholder class={ [className]: true, "empty": false } name=name disabled=disabled )
+		button.hidden.rounded-xl.bg-custom-red-2.col-span-12.text-white.text-sm.h-12( class={ "sm:block lg:col-span-12 xl:col-span-12": true, "is-loading": false } ) Отправить заявку
+		.flex.flex-col.items-start.justify-start.col-span-12.text-sm.text-custom-gray-8
+			p 
+				|Нажимая кнопку «Отправить заявку», Вы принимаете&nbsp; 
+				a.privacy-policy-trigger( href="/privacy-policy" ) политику конфиденциальности
+				|&nbsp;и даёте согласие на обработку Ваших персональных данных
+		button.block.rounded-xl.bg-custom-red-2.col-span-12.text-white.text-sm.h-12( class="sm:hidden" ) Отправить заявку
+
+
+
+mixin banners(banners)
+	.banners-carousel
+		.swiper-wrapper
+			each banner in banners
+				- let { src, top_src, title, subtitle, fontColor, buttonColor, buttonBackground, buttonText, background } = banner
+				-
+					let bg = Object.keys(src)
+				.banner.swiper-slide
+					if env.NODE_ENV === 'development'
+						img.bg.lazy.widescreen( data-src="/img/banners/widescreen.png" )
+						img.bg.lazy.desktop( data-src="/img/banners/desktop.png" )
+						img.bg.lazy.tablet( data-src="/img/banners/tablet.png" )
+						img.bg.lazy.mobile( data-src="/img/banners/mobile.png" )
+					else
+						each prop in bg
+							img.bg.lazy( data-src=src[prop] class=prop )
+					.button.block.rounded-xl.bg-custom-red-2.col-span-12.text-white.text-sm.h-12( style=`color: ${buttonColor}; background: ${buttonBackground};` ) !{buttonText}
+		.swiper-pagination

@@ -1,0 +1,46 @@
+extends layout/layout
+
+include components/tabs/mixins
+include components/services_stack/mixins
+include components/popular_services/mixins
+include components/main/mixins
+include components/page/mixins
+
+block main
+	script.
+		const AREA = "#{area_path}",
+					REGION = "#{region.key}",
+					path = "#{path}",
+					HASBANNERS = #{banners && banners.length > 0 ? true : false}
+
+	.w-full.bg-white.mt-1
+		if banners && banners.length > 0
+			.max-w-screen-xl.mx-auto.banners
+				if false
+					.swiper-wrapper
+					.swiper-slide
+				+banners(banners)
+		+advantages(path)
+		.max-w-screen-xl.mx-auto
+			.px-8.py-16.box-content.relative( class="lg:px-6" )
+				if page.title
+					h2.text-2xl.font-semibold.mb-6 #{page.title}
+				else
+					h2.text-2xl.font-semibold.mb-6 Отправьте заявку на подключение в #{area.name}
+				if (tabs && tabs.length > 1)
+					.-mx-6.mb-6
+						+tabs({ items: tabs })
+				.tab-loader( data-load="loaded" )
+				+panels({ items: tariffs[tab] })
+		if page.content || area.content
+			.max-w-screen-xl.mx-auto
+				.content.w-full.h-full.px-8.py-12( class="lg:px-6" )!= renderContent(page.content || area.content, { city: area.name })
+
+
+block modal
+	.modal.form-modal( class={ "is-active": false } )
+		.modal-background( onclick='toggleModal()' )
+		.modal-content
+			.modal-close( onclick='toggleModal()' )
+				i.fas.fa-times
+			+modal_form()

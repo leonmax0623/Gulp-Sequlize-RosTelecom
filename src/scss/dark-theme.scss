@@ -1,0 +1,19 @@
+/* Common */
+@import "./common/variables";
+@import "./components/mixins";
+
+
+
+/* Dark theme */
+@import "./components/dark";
+
+
+/* Section styles */
+@import "./components/section/tariff";
+@import "./components/section/wink";
+@import "./components/section/bonus";
+@import "./components/section/connect";
+@import "./components/section/signal";
+@import "./components/section/answers";
+@import "./components/section/pon";
+@import "./components/section/channel";

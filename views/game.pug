@@ -1,0 +1,37 @@
+extends layout/layout
+
+
+block variables
+  - var dark = true
+  - var pageFour = true
+  - var select = true
+
+block main
+  include components/section/team
+  include components/section/gamers
+  include components/section/tariff
+  include components/section/bonus
+  include components/section/connection
+  include components/section/router
+  include components/section/signal
+  include components/section/connect
+
+
+block modal
+  .modal.connect-modal(class={ "is-active": false })
+    .modal-background(onclick='toggleModal()')
+    .modal-content
+      .modal-close(onclick='toggleModal()')
+        i.fas.fa-times
+      .popup__title Проверьте тип подключения
+      p Подойдите к вашему роутеру, предварительно убедитесь, что ничего не скачиваете или играете. Проверьте основной провод провайдера или гнездо разъема и сравните с изображениями ниже.
+      .popup__inner
+        .popup__col
+          img(src="/img/gronIcon.jpg" alt="PON")
+          .popup__caption PON
+        .popup__col
+          img(src="/img/notGropIcon.jpg" alt="не PON")
+          .popup__caption не PON
+  
+  
+  

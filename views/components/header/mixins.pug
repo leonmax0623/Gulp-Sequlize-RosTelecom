@@ -1,0 +1,87 @@
+mixin nav_list({ direction, className, items, chevron })
+	if region
+		ul.flex( class=(direction == "column" ? "flex-col" : direction == "row" ? "flex-row" : "") + " " + className )
+			each item, i in items
+				- let { name, path } = item
+				li.flex-shrink-0( class=direction == "column" ? "mb-6" : "mr-6" )
+					a.flex( href=`/${region.key}/${area_path}${path}` )
+						span.w-full #{name}
+						if chevron
+							span.icon
+								i.fas.fa-angle-right
+
+mixin city({ city, className })
+	.city.flex.items-center.text-white.text-sm( class="cursor-pointer " + className )
+		span.flex-shrink-0 Ваш город:
+		+svg("location_icon", "mx-2 w-3.5 h-4")
+		span #{city}
+
+mixin logo({ type, className })
+	a( class=className href=mainHref || "/" )
+		if type == "dark"
+			img.h-auto.lazy( src="/img/logo-white.png" data-src="/img/logo-white.png" alt="logo" )
+		else if type == "light" 
+			img.h-auto.lazy( src="/img/logo.png" data-src="/img/logo.png" alt="logo" )
+		else
+			+svg("logo_white")
+
+mixin dropdown_list({ items, className })
+	.relative.flex.mr-auto.w-auto.flex-shrink-0( class="sm:ml-6 " + className )
+		.dropdown_trigger.text-base.text-white.flex.cursor-pointer( 
+			class="sm:text-sm sm:mt-1.5"
+			onclick='toggleDropdown(event)' )
+			span #{items[0].title}
+			span.icon
+				i.fas.fa-angle-down( class="ml-2.5 w-2.5" )
+		.dropdown_content.flex.absolute.flex-col.text-base.text-white.absolute.bg-custom-blue.-ml-4.px-4.shadow.z-50( class="sm:text-sm" )
+			ul
+				-items.splice(0, 1)
+				each item in items
+					- let { title, path } = item
+					li.w-full.py-2.flex
+						a.flex.h-full.w-full( href=path ) #{title}
+
+mixin contacts({ type })
+	.contacts
+		if type == "small"
+			a.bg-custom-red-2.w-12.h-12.rounded-full.flex.items-center.justify-center( href=`tel:${phones ? phones.forNew : "88888888888"}` )
+				+svg("phone_icon_white", "w-6")
+		else if (type == "dark")
+			.flex.flex-col.items-end.border-solid.flex-shrink-0.mb-4( class="lg:ml-12 lg:border-r-2 lg:pr-4 lg:mb-0" )
+				span.text-xs.font-medium ПОДКЛЮЧЕНИЕ УСЛУГ
+				a.flex.items-center( href=`tel:${phones ? phones.forNew : "88888888888"}` )
+					+svg("phone_icon_white", "h-6 min-w-6 w-6")
+					span.text-2xl.ml-3.flex-shrink-0 #{phones ? phones.forNew : "88888888888"}
+		else
+			.flex.flex-col.items-end.border-solid.flex-shrink-0.mb-4( class="lg:ml-12 lg:border-r-2 lg:pr-4 lg:mb-0" )
+				span.text-xs.font-medium ПОДКЛЮЧЕНИЕ УСЛУГ
+				a.flex.items-center( href=`tel:${phones ? phones.forNew : "88888888888"}` )
+					+svg("phone_icon", "h-6 min-w-6 w-6")
+					span.text-2xl.ml-3.flex-shrink-0 #{phones ? phones.forNew : "88888888888"}
+
+mixin support({ className })
+	.flex.items-center.justify-end.relative( class="lg:justify-start" )
+		span.font-medium.text-sm.text-right.pl-6( class="lg:text-trueGray-400" )
+			|ТЕХНИЧЕСКАЯ
+			br
+			|ПОДДЕРЖКА
+		if false
+			.support_trigger.active
+		.support_trigger.bg-white.rounded-full.w-9.h-9.flex.items-center.justify-center.ml-4.cursor-pointer( onclick='toggleSupport(event)' )
+			+svg("chevron-down", "w-4 mt-1")
+		.absolute.support-box.text-left
+			ul
+				li Вопросы по оплате и начислениям
+				li Не работают домашние услуги
+				li Другие вопросы по существующему договору
+			p
+				|Обращайтесь по номеру&nbsp;
+				a( href=`tel:${phones ? phones.techSupport : "88888888888"}` ) #{phones ? phones.techSupport : "88888888888"}
+
+mixin burger_trigger()
+	if false
+		.burger.active
+	#burger.burger.cursor-pointer( class="hover:opacity-80" onclick='toggleMenu()' )
+		span 
+		span 
+		span 

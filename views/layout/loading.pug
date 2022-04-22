@@ -1,0 +1,76 @@
+.loading( style="transition: opacity 1000ms; opacity: 1; position: fixed; z-index: 999; background: #fff;" )
+	.vertical-centered-box
+		.content
+			.loader-circle
+			.loader-line-mask
+				.loader-line
+	picture
+		source( srcset="/img/logo_load.png" type="image/jpeg" )
+		img.logo( src="/img/logo_load.png" alt="rostelecom" )
+
+style.
+	@keyframes rotate{ 0% {-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);transform: rotate(0deg);} 100% {-webkit-transform: rotate(-360deg);-moz-transform: rotate(-360deg);-ms-transform: rotate(-360deg);transform: rotate(-360deg);}}
+	.loading * {
+		-webkit-transition: all 1s;
+		-moz-transition: all 1s;
+		-o-transition: all 1s;
+		transition: all 1s;
+		dir: ltr !important;
+	}
+	.loading {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 9999;
+	}
+	.loading .logo {
+		width: 80px;
+		height: auto;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		margin: auto;
+		height: 4rem;
+		width: 2.75rem;
+	}
+	.loader-circle {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+		margin-left: -60px;
+		margin-top: -60px;
+	}
+	.loader-line-mask {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 60px;
+		height: 120px;
+		margin-left: -60px;
+		margin-top: -60px;
+		overflow: hidden;
+		-webkit-transform-origin: 60px 60px;
+		-moz-transform-origin: 60px 60px;
+		-ms-transform-origin: 60px 60px;
+		-o-transform-origin: 60px 60px;
+		transform-origin: 60px 60px;
+		-webkit-mask-image: -webkit-linear-gradient(top, #000000, rgba(0, 0, 0, 0));
+		-webkit-animation: rotate reverse 1.2s infinite linear;
+		-moz-animation: rotate reverse 1.2s infinite linear;
+		-o-animation: rotate reverse 1.2s infinite linear;
+		animation: rotate reverse 1.2s infinite linear;
+	}
+	.loader-line-mask .loader-line {
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 0 1px rgba(120, 0, 255, .5);
+	}

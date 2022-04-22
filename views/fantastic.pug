@@ -1,0 +1,18 @@
+extends layout/layout
+
+
+block main
+  .container-main
+    .banner
+      picture
+        source(srcset="img/banners/banner/1-banner-phone.png" media="(max-width: 414px)")
+        img(src="img/banners/banner/1-banner-laptop.png" alt="autocredit")
+      .banner__content
+        .banner__title Великолепная четверка
+        p Объединяйте услуги: интернет, мобильную связь, интерактивное ТВ и онлайн-кинотеатр с выгодой от 40%
+        button(type="button" class="Button Button-red") Оставить заявку
+
+  include components/section/advantage
+  include components/section/cinema
+  include components/section/popular
+  include components/section/step

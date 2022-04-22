@@ -1,0 +1,59 @@
+block variables
+
+
+doctype html
+html( lang="ru" class={ "is-clipped": false } )
+	head
+		title #{head.title}
+		meta( name="description" content=head.description )
+		meta( name="keywords" content=head.keywords )
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		each link in head.links
+			if !link.hidden
+				link( rel=link.rel href=assetFingerprint(link.href) type=link.type )
+
+	body.overflow-x-hidden
+		script.
+			let QUERY = !{JSON.stringify(query)}
+
+		//- Loading
+		include loading
+
+		//- Mixins
+		include mixins
+
+
+		include header
+		main
+			block main
+		include footer
+		block modal
+
+		//- SVG Sprite
+		.symbols( style="position: absolute; width: 0; height: 0;" )
+			if false
+				#location_icon
+					path
+			include ../../public/svg/svg/symbols.svg
+
+		//- Scripts
+		each script in head.scripts
+			script( defer src=assetFingerprint(script.src) type=script.type )
+
+		
+		if false
+			div( class="mx-2 w-3.5 h-4 h-14 h-9 ml-2.5 w-2.5 w-4 bg-custom-red-2 bg-custom-brand-2 rounded-full text-white h-48 w-full sm:w-2/3 md:w-full sm:ml-0 md:ml-6 lg:ml-0 mt-4 md:mt-0 lg:mt-4 mr-0 sm:mr-16 justify-end" )
+
+
+	.popup#popup-pon(style="display:none;max-width:768px;")
+		.popup__title Проверьте тип подключения
+		p Подойдите к вашему роутеру, предварительно убедитесь, что ничего не скачиваете или играете. Проверьте основной провод провайдера или гнездо разъема и сравните с изображениями ниже.
+		.popup__inner
+			.popup__col
+				img(src="/img/gronIcon.jpg" alt="PON")
+				.popup__caption PON
+			.popup__col
+				img(src="/img/notGropIcon.jpg" alt="не PON")
+				.popup__caption не PON

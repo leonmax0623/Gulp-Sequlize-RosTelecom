@@ -1,0 +1,10 @@
+.DS_Store
+
+#Folders
+/node_modules
+
+# Enviroments
+.env
+
+# Configuration
+.eslintrc.json

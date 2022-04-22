@@ -1,0 +1,142 @@
+.step {
+	&__tabs {
+    overflow-x: auto;
+		margin-bottom: 24px;
+		@media screen and (max-width: 500px) {
+      margin-bottom: 16px;
+      margin-right: -15px;
+    }
+    &-inner {
+      position: relative;
+      overflow-x: auto;
+      display: inline-flex;
+      padding-right: 15px;
+      &:after {
+        content: '';
+        width: calc(100% - 15px);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transition: all .3s;
+        height: 2px;
+        background-color: #DEDCE0;
+        
+      }
+    }
+	}
+	&__item {
+		width: calc(33.333% - 24px);
+		max-width: calc(33.333% - 24px);
+		&:not(:last-child) {
+			margin-right: 24px;
+      @media screen and (max-width: 768px) {
+        margin-right: 16px;
+            
+      }
+      @media screen and (max-width: 500px) {
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+		}
+	  @media screen and (max-width: 768px) {
+      width: calc(33.333% - 16px);
+		  max-width: calc(33.333% - 16px);
+    }
+    @media screen and (max-width: 500px) {
+      width: 100%;
+		  max-width: 100%;
+    }
+	}
+	&__count {
+		font-weight: 600;
+		font-size: 24px;
+		line-height: 130%;
+		margin-bottom: 24px;
+	  @media screen and (max-width: 500px) {
+      margin-bottom: 16px;
+    }
+	}
+	&__info {
+		font-size: 14px;
+		line-height: 130%;
+	}
+	&__tab {
+		position: relative;
+		cursor: pointer;
+		font-size: 20px;
+    white-space: nowrap;
+		height: 42px;
+		&:after {
+			content: '';
+			width: 0;
+			position: absolute;
+      z-index: 1;
+			left: 50%;
+			bottom: 0;
+			transition: all .3s;
+			transform: translateX(-50%);
+			height: 2px;
+      background-color: #7800FF;
+			
+		}
+		&.active {
+			&:after {
+        width: 100%;
+			}
+		}
+		&:not(:last-child) {
+			margin-right: 32px;
+		}
+	}
+  &__inner {
+    margin-bottom: 32px;
+  }
+	&__list {
+		display: none;
+    flex-wrap: wrap;
+		&.active {
+			display: flex;
+		}
+	}
+}
+
+.input-checkbox {
+	&__list {
+	  margin-bottom: 32px;
+	}
+	input {
+	  position: absolute;
+	  visibility: hidden;
+	  opacity: 0;
+	  & + label {
+		position: relative;
+		display: flex;
+		&:before {
+		  content: '';
+		  cursor: pointer;
+		  margin-right: 16px;
+		  flex: 0 0 auto;
+		  width: 24px;
+		  height: 24px;
+		  background: #7800FF;
+		  border-radius: 3px;
+		}
+		svg {
+		  position: absolute;
+		  left: 5px;
+		  top: 6px;
+		  transition: all .3s;
+		  transform: scale(0);
+		}
+		
+	  }
+	  &:checked {
+		& + label {
+		  svg { transform: scale(1); }
+		}
+	  }
+	}
+	&:not(:last-child) {
+	  margin-bottom: 24px;
+	}
+}

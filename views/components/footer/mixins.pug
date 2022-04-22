@@ -1,0 +1,6 @@
+mixin socials({ items })
+	.flex.items-center.justify-between.mt-6( class="sm:mt-auto sm:justify-end sm:col-span-4 md:col-span-3" )
+		each item in items
+			- let { icon, link } = item
+			a( href=link target="_blank" class="py-3 px-3" )
+				+svg(icon, "h-6 w-6")

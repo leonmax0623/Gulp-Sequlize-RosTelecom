@@ -1,0 +1,14 @@
+extends layout/layout
+
+include components/main/mixins
+
+block main
+	.w-full.bg-white.mt-1.home
+		.px-2.pt-14.pb-8.relative.z-10( class="sm:px-4" )
+			.max-w-screen-xl.mx-auto
+				+area_livesearch()
+		.px-2.py-16.relative( class="sm:px-4" )
+			.max-w-screen-xl.mx-auto
+				.msnry
+					.msnry-sizer
+					+area_selector({ areas })

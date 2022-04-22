@@ -1,0 +1,128 @@
+.columns.lead-form {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	.column {
+		display: inline-block;
+		height: 100%;
+		padding: .75rem;
+		&.hidden {
+			display: none;
+		}
+		&.is-12 {
+			width: 100%;
+		}
+		&.is-9 {
+			width: 75%;
+			.modal-form {
+				display: flex;
+				flex-wrap: wrap;
+				margin: 0 -.375rem;
+				.field {
+					padding: .4375rem .375rem;
+					position: relative;
+					.help {
+						display: none;
+					}
+					&.phone,
+					&.city {
+						width: 33.3333333334%;
+					}
+					&.name {
+						width: 66.6666666667%;
+					}
+					&.street {
+						width: 39.666666666667%;
+					} 
+					&.house,
+					&.flat {
+						width: 13.5%;
+					}
+					input {
+						width: 100%;
+						color: #79787A;
+						padding: .6125rem;
+						background: #FCFCFC;
+						border: 1px solid #E0E0E0;
+						border-radius: 7px;
+						&.empty {
+							border-color: #f14668;
+						}
+						&.invalid {
+							&+.help {
+								font-size: .5rem;
+								letter-spacing: .15rem;
+								color: #f14668;
+								display: block;
+								position: absolute;
+								top: calc(100% - 0.35rem);
+								left: 0.5rem;
+							}
+						}
+					}
+				}
+			}
+		}
+		&.is-3 {
+			width: 25%;
+			.column-container {
+				.content {
+					p {
+						font-size: 1.125rem;
+						font-weight: 600;
+						margin-bottom: .5rem;
+						&.tariff_name {
+							font-size: 1rem;
+							font-weight: normal;
+						}
+						&.price {
+							margin-bottom: 0;
+							span {
+								&:first-of-type {
+									font-size: 1.75rem;
+								}
+								&:last-of-type {
+									font-size: .875rem;
+									font-weight: 500;
+								}
+							}
+						}
+					}
+				}
+				.button-container {
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					margin-top: .5rem;
+					button {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						height: unset;
+						width: 100%;
+						padding: .5rem;
+						border-radius: 6px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.columns.lead-form {
+		.column.is-9 {
+			.modal-form {
+				.field {
+					padding: .4375rem .375rem!important;
+					width: 100%!important;
+					&.house,
+					&.flat {
+						width: 50%!important;
+					}
+				}
+			}
+		}
+	}
+}

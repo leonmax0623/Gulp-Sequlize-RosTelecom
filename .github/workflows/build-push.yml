@@ -1,0 +1,58 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+    branches: ['master']
+
+env:
+  IMAGE_NAME: cr.yandex/crpk8fako11hjk15seg3/${{ github.repository }}:master
+  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: cr.yandex
+          username: json_key
+          password: ${{ secrets.YC_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -f Dockerfile -t ${{ env.IMAGE_NAME }} .
+          docker push ${{ env.IMAGE_NAME }}
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: [build-and-push-image]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: cr.yandex
+          username: json_key
+          password: ${{ secrets.YC_TOKEN }}
+
+      - name: Setup ssh
+        run: |
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+          mkdir ~/.ssh && cp .github/workflows/known_hosts ~/.ssh/known_hosts
+
+      - name: Deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DOCKER_HOST: ssh://master@51.250.35.225
+        run: |
+          docker-compose -f docker-stack.yml pull
+          docker-compose -f docker-stack.yml up -d

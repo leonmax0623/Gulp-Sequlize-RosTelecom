@@ -1,0 +1,35 @@
+section.s-connect.section-36
+  .container-main
+    if (pageFour)
+      h2 Заявка на подключение
+      form.freeForm.freeForm--choices(action="/")
+        .freeForm__col
+          .freeForm__inputs
+            .freeForm__input
+              input(type="text" name="name" aria-label="fio" placeholder="ФИО")
+              input(type="text" name="city" aria-label="city" placeholder="Город")
+            .freeForm__input
+              input(type="tel" name="phone" aria-label="phone" placeholder="Контактный телефон")
+              input(type="text" name="street" aria-label="street" placeholder="Улица")
+              input(type="text" name="home" class="freeForm__home" aria-label="home" placeholder="Дом")
+              input(type="text" name="room" class="freeForm__room" aria-label="room" placeholder="Квартира")
+        .freeForm__col
+          select(class="selectTariff" name="tariff")
+            option(value="" selected disabled) Выбрать тариф
+            option(value="1") Тариф 1
+            option(value="2") Тариф 2
+            option(value="3") Тариф 3
+          button(type="submit" class="Button Button-red Button-small Button-100") Отправить заявку
+        .freeForm__col
+          .freeForm__agree 
+            input(type="checkbox" name="agree2" checked id="agree2")
+            label(for="agree2") 
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 0.292893C14.0976 0.683417 14.0976 1.31658 13.7071 1.70711L5.70711 9.70711C5.31658 10.0976 4.68342 10.0976 4.29289 9.70711L0.292893 5.70711C-0.0976311 5.31658 -0.0976311 4.68342 0.292893 4.29289C0.683417 3.90237 1.31658 3.90237 1.70711 4.29289L5 7.58579L12.2929 0.292893C12.6834 -0.0976311 13.3166 -0.0976311 13.7071 0.292893Z" fill="white"/>
+              </svg>
+              | Согласен на обработку персональных данных
+          .freeForm__accept 
+            | Нажимая кнопку «Отправить заявку», Вы принимаете 
+            a(href="#") политику конфиденциальности 
+            | и даёте согласие на обработку Ваших 
+            a(href="#") персональных данных

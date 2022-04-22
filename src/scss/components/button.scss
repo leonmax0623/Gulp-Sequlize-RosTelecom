@@ -1,0 +1,30 @@
+.Button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-align: center;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  font-size: 18px;
+  flex: 0 0 auto;
+  border-radius: 5px;
+  height: 52px;
+  padding: 0 45px;
+  @media screen and (max-width: 768px) {
+    height: 42px;
+    padding: 0 24px;
+    font-size: 16px;
+  }
+  &-red {
+    background: #FF4F12;
+  }
+  &-small {
+    height: 40px;
+    font-size: 16px;
+  }
+  &-100 {
+    width: 100%;
+  }
+}

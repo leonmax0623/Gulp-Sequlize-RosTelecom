@@ -1,0 +1,13 @@
+mixin service_card({ span, background, title, href })
+	.rounded-xl.relative.overflow-hidden.h-60.col-span-1( class="lg:h-72 xl:col-span-"+span )
+		img.h-auto.w-full.absolute.top-0.left-0( src=background alt=title )
+		.absolute.top-0.left-0.h-full.w-full.bg-gray-900.bg-opacity-30
+		.absolute.w-full.h-full.p-6.flex.flex-col.justify-between.box-border.text-white
+			span.text-xl.font-bold.text-uppercase #{title}
+			a.bg-transparent.border.border-white.rounded-md.h-10.w-36.flex.items-center.justify-center( href=href ) Подробнее
+
+
+mixin popular_services({ items })
+	.grid-style.grid.grid-cols-1.gap-6.w-full.h-full( class="sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4" )
+		each item in items
+			+service_card(item)

@@ -1,0 +1,92 @@
+@import "common/font";
+@import "main";
+
+.advantages {
+	.icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		$size: 4.875rem;
+		height: $size;
+		width: $size;
+		min-width: $size;
+		margin-right: 1.5rem;
+		border: 2px solid #{theme("colors.custom.brand.5")};
+		border-radius: 50%;
+		img {
+			height: 3.125rem;
+			width: 3.125rem;
+			max-width: unset;
+		}
+	}
+	&.telephony {
+		.column-container {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;	
+			.content {
+				p {
+					&.title {
+						font-weight: 500;
+						font-size: 1.125rem;
+						color: #100D23;
+						margin-bottom: .5rem;
+					}
+					color: #4B4A50;
+				}
+			}
+		}
+	}
+	&.cctv,
+	&.smart_house {
+		.column-container {
+			height: 100%;
+			h3 {
+				font-size: 1.75rem;
+				font-weight: 600;
+				color: #100D23;
+			}
+			img {
+				width: 100%;
+			}
+			.list {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: space-between;
+				height: 100%;
+				.list-item {
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					&+.list-item {
+						margin-top: 1.5rem;
+					}
+				}
+			}
+		}	
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.advantages {
+		&.cctv,
+		&.smart_house {
+			.columns {
+				.column {
+					@for $i from 1 through 9 {
+						&:nth-of-type(#{$i}) {
+							@if $i == 5 {
+								order: 6;
+							} @else if $i == 6 {
+								order: 5;
+							} @else {
+								order: $i;
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

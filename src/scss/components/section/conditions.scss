@@ -1,0 +1,48 @@
+.conditions {
+  &__title {
+    font-size: 18px;
+    line-height: 130%;
+    margin-bottom: 32px;
+  }
+}
+
+.input-checkbox {
+  &__list {
+    margin-bottom: 32px;
+  }
+  input {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    & + label {
+      position: relative;
+      display: flex;
+      &:before {
+        content: '';
+        cursor: pointer;
+        margin-right: 16px;
+        flex: 0 0 auto;
+        width: 24px;
+        height: 24px;
+        background: #7800FF;
+        border-radius: 3px;
+      }
+      svg {
+        position: absolute;
+        left: 5px;
+        top: 6px;
+        transition: all .3s;
+        transform: scale(0);
+      }
+      
+    }
+    &:checked {
+      & + label {
+        svg { transform: scale(1); }
+      }
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+}

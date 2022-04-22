@@ -1,0 +1,218 @@
+@media screen and (max-width: 650px) {
+  .card {
+    overflow: auto;
+  }
+}
+
+.card__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: -24px;
+}
+
+@media screen and (max-width: 650px) {
+  .card__inner {
+    margin-left: 12px;
+  }
+}
+
+.card__item {
+  width: calc(25% - 24px);
+  max-width: calc(25% - 24px);
+  margin: 0 24px 24px 0;
+  color: #ffffff;
+  background-color: #100D23;
+  border: 1px solid #DEDCE0;
+  -webkit-border-radius: 12px;
+          border-radius: 12px;
+}
+
+@media screen and (max-width: 1200px) {
+  .card__item {
+    width: calc(33.333% - 24px);
+    max-width: calc(33.333% - 24px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .card__item {
+    width: calc(50% - 24px);
+    max-width: calc(50% - 24px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .card__item {
+    min-width: 300px;
+  }
+}
+
+.card__title {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 24px;
+}
+
+.card__top {
+  padding: 20px 15px 12px;
+}
+
+.card__body {
+  position: relative;
+  padding: 30px 15px 15px;
+}
+
+.card__list li {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-weight: 500;
+  padding-left: 52px;
+}
+
+.card__list li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.card__list li > svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.card__list li b {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.card__list li p {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.card__list li a {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 16px;
+  -webkit-transition: color .3s;
+  -o-transition: color .3s;
+  transition: color .3s;
+  margin-top: 5px;
+  color: #ffffff;
+}
+
+.card__list li a svg {
+  fill: #ffffff;
+  margin-right: 4px;
+  -webkit-transition: fill .3s;
+  -o-transition: fill .3s;
+  transition: fill .3s;
+}
+
+.card__list li a span {
+  border-bottom: 1px dotted;
+}
+
+.card__list li a:hover {
+  color: #FF4F12;
+}
+
+.card__list li a:hover svg {
+  fill: #FF4F12;
+}
+
+.card__price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.card__price-count {
+  font-size: 40px;
+  letter-spacing: -0.04em;
+  margin-right: 12px;
+}
+
+.card__price p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 14px;
+  font-weight: normal;
+  color: #DEDCE0;
+}
+
+.card__price p span {
+  width: 100%;
+  height: 1px;
+  margin-top: 2px;
+  background-color: #DEDCE0;
+}
+
+.card__action {
+  position: absolute;
+  top: 0;
+  left: -11px;
+  background: #7800FF;
+  padding: 4px 12px;
+  -webkit-border-radius: 6px 2px 2px 0px;
+          border-radius: 6px 2px 2px 0px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #100D23;
+}
+
+.card__action:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 12px 0;
+  border-color: transparent #ffffff transparent transparent;
+}
+
+.card__info {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #DEDCE0;
+  margin-top: 16px;
+}

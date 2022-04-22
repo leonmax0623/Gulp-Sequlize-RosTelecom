@@ -1,0 +1,4 @@
+ul.pl-4.areas-list
+	each area in areas
+		li.appendless
+			a( href=`/${area.region.key}/${area.key}` class="hover:text-custom-brand-1 hover:opacity-100" ) #{area.shortName}

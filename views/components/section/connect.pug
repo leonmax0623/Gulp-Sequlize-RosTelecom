@@ -1,0 +1,110 @@
+section.s-connect.section-36
+  .container-main
+    if (pageFour)
+      h2 Заявка на подключение
+      form(action="/").connect__home
+        .freeForm__agree
+          input(type="checkbox" name="Internet" id="Internet")
+          label(for="Internet") 
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 0.292893C14.0976 0.683417 14.0976 1.31658 13.7071 1.70711L5.70711 9.70711C5.31658 10.0976 4.68342 10.0976 4.29289 9.70711L0.292893 5.70711C-0.0976311 5.31658 -0.0976311 4.68342 0.292893 4.29289C0.683417 3.90237 1.31658 3.90237 1.70711 4.29289L5 7.58579L12.2929 0.292893C12.6834 -0.0976311 13.3166 -0.0976311 13.7071 0.292893Z" fill="white"/>
+            </svg>
+            | У меня уже есть Домашний интернет от Ростелекома
+    else
+      h2 Бесплатная доставка при оформлении заказа ТВ-приставки Wink+
+    .connect
+      .step__inner
+        .step__tabs
+          .step__tabs-inner
+            .step__tab.active(data-value="1") За полную стоимость
+            .step__tab(data-value="2") В рассрочку
+        .step__content
+          .step__list.step__list--1.active
+            form.freeForm(action="/")
+              .freeForm__col
+                .freeForm__inputs
+                  .freeForm__input
+                    input(type="text" name="name" aria-label="fio" placeholder="ФИО")
+                    input(type="text" name="city" aria-label="city" placeholder="Город")
+                  .freeForm__input
+                    input(type="tel" name="phone" aria-label="phone" placeholder="Контактный телефон")
+                    input(type="text" name="street" aria-label="street" placeholder="Улица")
+                    input(type="text" name="home" class="freeForm__home" aria-label="home" placeholder="Дом")
+                    input(type="text" name="room" class="freeForm__room" aria-label="room" placeholder="Квартира")
+              .freeForm__col
+                if (pageFour)
+                  .freeForm__order 
+                    b В заказе:
+                    p Игровой роутер RT-X
+                    .freeForm__order_price
+                      span 8 999 
+                      | руб.
+                else
+                  .freeForm__order 
+                    b В заказе:
+                    p ТВ-приставка Wink+
+                    .freeForm__order_price
+                      span 4 990 
+                      | руб.
+                button(type="submit" class="Button Button-red Button-small") Отправить заявку
+              .freeForm__col
+                .freeForm__agree 
+                  input(type="checkbox" name="agree" checked id="agree")
+                  label(for="agree") 
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 0.292893C14.0976 0.683417 14.0976 1.31658 13.7071 1.70711L5.70711 9.70711C5.31658 10.0976 4.68342 10.0976 4.29289 9.70711L0.292893 5.70711C-0.0976311 5.31658 -0.0976311 4.68342 0.292893 4.29289C0.683417 3.90237 1.31658 3.90237 1.70711 4.29289L5 7.58579L12.2929 0.292893C12.6834 -0.0976311 13.3166 -0.0976311 13.7071 0.292893Z" fill="white"/>
+                    </svg>
+                    | Согласен на обработку персональных данных
+                .freeForm__accept 
+                  | Нажимая кнопку «Отправить заявку», Вы принимаете 
+                  a(href="#") политику конфиденциальности 
+                  | и даёте согласие на обработку Ваших 
+                  a(href="#") персональных данных
+          .step__list.step__list--2
+            form.freeForm(action="/")
+              .freeForm__col
+                .freeForm__inputs
+                  .freeForm__input
+                    input(type="text" name="name" aria-label="fio" placeholder="ФИО")
+                    input(type="text" name="city" aria-label="city" placeholder="Город")
+                  .freeForm__input
+                    input(type="tel" name="phone" aria-label="phone" placeholder="Контактный телефон")
+                    input(type="text" name="street" aria-label="street" placeholder="Улица")
+                    input(type="text" name="home" class="freeForm__home" aria-label="home" placeholder="Дом")
+                    input(type="text" name="room" class="freeForm__room" aria-label="room" placeholder="Квартира")
+              .freeForm__col
+                if (pageFour)
+                  .freeForm__order
+                    b В заказе:
+                    p Игровой роутер RT-X
+                    .freeForm__order_price
+                      span 399 
+                      | мес. /руб.
+                  .freeForm__circs
+                      p *Срок рассрочки 24 месяца
+                      p *Стартовый взнос 400 рублей
+                else
+                  .freeForm__order
+                    b В заказе:
+                    p ТВ-приставка Wink+
+                    .freeForm__order_price
+                      span 250 
+                      | мес. /руб.
+                  .freeForm__circs
+                    p *Срок рассрочки 24 месяца
+                    p *Только для клиентов Ростелеком
+                button(type="submit" class="Button Button-red Button-small") Отправить заявку
+              .freeForm__col
+                .freeForm__agree 
+                  input(type="checkbox" name="agree2" checked id="agree2")
+                  label(for="agree2") 
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 0.292893C14.0976 0.683417 14.0976 1.31658 13.7071 1.70711L5.70711 9.70711C5.31658 10.0976 4.68342 10.0976 4.29289 9.70711L0.292893 5.70711C-0.0976311 5.31658 -0.0976311 4.68342 0.292893 4.29289C0.683417 3.90237 1.31658 3.90237 1.70711 4.29289L5 7.58579L12.2929 0.292893C12.6834 -0.0976311 13.3166 -0.0976311 13.7071 0.292893Z" fill="white"/>
+                    </svg>
+                    | Согласен на обработку персональных данных
+                .freeForm__accept 
+                  | Нажимая кнопку «Отправить заявку», Вы принимаете 
+                  a(href="#") политику конфиденциальности 
+                  | и даёте согласие на обработку Ваших 
+                  a(href="#") персональных данных
+        

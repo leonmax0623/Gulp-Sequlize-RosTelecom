@@ -1,0 +1,116 @@
+.banners {
+  padding-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .banners {
+    margin-top: -3rem;
+  }
+}
+
+.banners .banners-carousel {
+  overflow: hidden;
+}
+
+.banners .banner {
+  height: unset;
+  padding: 16.7% 0;
+  position: relative;
+}
+
+.banners .banner img {
+  width: unset;
+  max-width: unset;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.banners .banner .desktop,
+    .banners .banner .tablet,
+    .banners .banner .mobile {
+  display: none;
+}
+
+.banners .banner .button {
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1.5rem 3rem;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  position: absolute;
+  bottom: 4rem;
+  left: 3.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1280px) {
+  .banners .banner {
+    padding: unset;
+  }
+
+  .banners .banner .widescreen {
+    display: none;
+  }
+
+  .banners .banner .desktop {
+    display: block;
+  }
+
+  .banners .banner .button {
+    bottom: 3.5rem;
+    left: 2rem;
+  }
+
+  .banners .banner img {
+    height: unset;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banners .banner .desktop {
+    display: none;
+  }
+
+  .banners .banner .tablet {
+    display: block;
+  }
+
+  .banners .banner .button {
+    font-size: 1rem;
+    padding: .75rem 1.5rem;
+    bottom: 2.5rem;
+    left: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .banners .banner .tablet {
+    display: none;
+  }
+
+  .banners .banner .mobile {
+    display: block;
+  }
+
+  .banners .banner .button {
+    left: 1rem;
+    bottom: 2rem;
+  }
+}

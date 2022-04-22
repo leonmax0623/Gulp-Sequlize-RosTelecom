@@ -1,0 +1,35 @@
+include ../components/header/mixins
+include ../components/footer/mixins
+
+footer.w-full.bg-custom-brand-3( class="md:pb-4 md:pt-2" )
+	.max-w-screen-xl.mx-auto.grid.grid-cols-1( class="md:grid-cols-12" )
+		.p-4.py-10.flex.flex-col.items-end( class="sm:hidden md:col-span-5" )
+			span.text-xs.text-white.text-right.uppercase Для новых клиентов:
+			.flex
+				+svg("phone_icon_white", "mr-2 h-6 w-6")
+				a.text-white.text-2xl.text-right( href=`tel:${phones ? phones.forNew : "88888888888"}` ) #{phones ? phones.forNew : "88888888888"}
+			span.text-xs.text-white.text-right.uppercase.mt-4 ТЕХНИЧЕСКАЯ ПОДДЕРЖКА:
+			.flex
+				+svg("phone_icon_white", "mr-2 h-6 w-6")
+				a.text-white.text-2xl.text-right( href=`tel:${phones ? phones.techSupport : "88888888888"}` ) #{phones ? phones.techSupport : "88888888888"}
+		.py-6.px-4.flex.flex-col.border-t.border-b.border-custom-gray-9( class="sm:hidden md:col-span-3" )
+			//- a.text-white.text-sm.font-medium( href="/" ) Проверить скорость интернета
+		.py-6.px-4.flex.flex-col.border-b.border-custom-gray-9( class="md:border-b-0 md:col-span-5" )
+			+logo({ type: "light", className: "w-full h-14" })
+			p.text-custom-gray-10.text-xs.mt-8 &copy; 2018 - #{year} Сайт не является средством массовой информации и действует на основании партнерского договора с ПАО «Ростелеком»
+		.pb-6.mt-10.pl-4.flex.flex-col.justify-start.border-b.border-custom-gray-9( class="md:border-l md:border-b-0 md:border-t-0 md:col-span-3" )
+			a.text-white.text-sm.font-medium( href="https://lk.rt.ru/" target="_blank") Личный кабинет
+			a.text-white.text-sm.font-medium( href="/" ) Проверить скорость интернета
+		.pr-4.py-6.hidden.flex-col.items-end( class="sm:flex md:col-span-4" )
+			span.text-xs.text-white.text-right.uppercase Для новых клиентов:
+			.flex.items-center
+				+svg("phone_icon_white", "mr-2 h-6 w-6")
+				a.text-white.text-2xl.text-right( href=`tel:${phones ? phones.forNew : "88888888888"}` ) #{phones ? phones.forNew : "88888888888"}
+			span.text-xs.text-white.text-right.uppercase.mt-4 ТЕХНИЧЕСКАЯ ПОДДЕРЖКА:
+			.flex.items-center
+				+svg("phone_icon_white", "mr-2 h-6 w-6")
+				a.text-white.text-2xl.text-right( href=`tel:${phones ? phones.techSupport : "88888888888"}` ) #{phones ? phones.techSupport : "8888888888888"}
+		
+		.pt-7.pb-3.px-4.items-center.justify-between.grid-cols-12.border-t.border-custom-gray-9( class="md:col-span-12 sm:grid sm:mt-8" )
+			a.text-xs.font-medium.text-white( class="sm:col-span-8 md:col-span-9" href="/privacy-policy" ) Политика обработки персональных данных
+			+socials({ items: footer.socials })
